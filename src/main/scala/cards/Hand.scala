@@ -6,20 +6,22 @@ import cards.Suit._
 import game.Outcomes
 
 
+/*Class Hand is a CardsCollection and represents the cards owned by a participant*/
 class Hand extends CardsCollection{
 
 	
 	var score:Int = 0
 	
 	var isStanding = false
+	var isBusted = false
 	
 	/*Define secondary constructor when we need to apply a function at creation of the object*/
 	def this(callback:(Hand) => Unit){
-	  /*Create the Hand*/
-	  this
-	  /*Apply the function*/
-	  callback(this)
-	  
+		/*Create the Hand*/
+		this
+		/*Apply the function*/
+		callback(this)
+		
 	}
 	
 	/*Determines the correct value of an Ace depending upon the current score*/
@@ -46,23 +48,27 @@ class Hand extends CardsCollection{
 		for(i <- 0 until numAce) {
 			points += aceValue(points)
 		}
+
+		if(points>21) {
+			this.isBusted = true
+		}
 		
 		this.score = points
 	}
 	
 	/*toSting override, to print the hand*/
 	override def toString:String = {
-	    cards.length match {
-	      case 0 => "Empty Hand"
-	      case _ => {
-			var returnString = ""
-			cards.foreach {card => 
-				returnString += " --- "+card.toString
+		cards.length match {
+			case 0 => "Empty Hand"
+			case _ => {
+				var returnString = ""
+				cards.foreach {card => 
+					returnString += " --- "+card.toString
+				}
+				returnString += "(score:" + this.score + ")"
+				returnString
 			}
-			returnString += "(score:" + this.score + ")"
-			returnString
-	      }
-	    }
+		}
 	}
 	
 	/*Add a card to the hand*/
@@ -73,9 +79,10 @@ class Hand extends CardsCollection{
 	
 	/*Empties the hand*/
 	def emptyHand {
-	  this.score = 0
-	  cards.remove(0, cards.size)
-	  this.isStanding = false
+		this.score = 0
+		cards.remove(0, cards.size)
+		this.isStanding = false
+		this.isBusted = false
 	}
 	
 	/*is this hand splittable?*/
@@ -86,18 +93,18 @@ class Hand extends CardsCollection{
 	
 	/*Does this hand win against another one?*/
 	def winsAgainstDealer(otherHand:Hand):Outcomes = {
-	  if(this.score<=21){
-	    otherHand.score match{
-	      case x if x>21 => Outcomes.Win
-	      case x if x<this.score => Outcomes.Win
-	      case x if x==this.score => Outcomes.Push
-	      case _ => Outcomes.Lose
-	    }
-	  }
-	  /*Busted, you lose*/
-	  else {
-	    Outcomes.Lose
-	  }
+		if(this.score<=21){
+			otherHand.score match{
+				case x if x>21 => Outcomes.Win
+				case x if x<this.score => Outcomes.Win
+				case x if x==this.score => Outcomes.Push
+				case _ => Outcomes.Lose
+			}
+		}
+		/*Busted, you lose*/
+		else {
+			Outcomes.Lose
+		}
 	}
 	
 }

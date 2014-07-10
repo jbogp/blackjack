@@ -32,7 +32,7 @@ The game play is very basic:
   - Stand
   - If the 2 cards are the same(for example Queen of Spades and Queen of Diamonds), the player can split his hand into 2 independent hands. (The starting bet is consequently doubled, both hands with the same bet)
 
-- During this process if the hand exceeds 21, the hand is busted and the bet is lost
+- During this process if the hand exceeds 21, the hand is busted and the bet is lost (the dealer still hit his cards but the result won't matter)
 
 - When all non busted hands are standing, the dealer will hit cards until reaching a minimum of 17.
   - If the player's hand is higher than the dealer's or if the dealer is busted, the bet is won
@@ -43,7 +43,7 @@ The game play is very basic:
 
 Comments
 --------
-This implementation is very basic. I should mention that I am fairly new to Scala but I really like so I decided to give it a go. Consequently, I may have missed opportunities to use nice syntactic options.
+This implementation is very basic. Having the final defense of my PhD on July 16th, I strictly limited myself to 24h of coding for this project, so some limit behavior might not be handled correctly. I should mention that I am fairly new to Scala but I really like it so I decided to give it a go. Consequently, I may have probably missed opportunities to use nice syntactic options.
 
 Class structure
 ---------------

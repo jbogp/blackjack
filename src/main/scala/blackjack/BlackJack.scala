@@ -7,7 +7,6 @@ import game.Table
 /*Main function, just starts the game*/
 object BlackJack {
 	def main(args: Array[String]) {
-		val game = new Table
-		game.play
+		Table.play
 	}
 }
