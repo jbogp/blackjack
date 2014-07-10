@@ -146,7 +146,7 @@ object Table {
 						}
 						/*Player isn't playing, start a new game by betting some chips*/
 						case false => {
-							this.startRounf
+							this.startRound
 						}
 					}
 				}
