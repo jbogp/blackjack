@@ -65,10 +65,17 @@ object Player {
 
 	/*Split one hand into two providing the hand only contains */
 	def split(hand:Hand) {
+		/*Is the hand splittable*/
 		if(hand.isSplittable){
-			/*Create a new hand, add the second card of hand to split to first card of newly created hand and remove the second card from first hand*/
-			hands += new Hand({h:Hand => h.addCard(hand.cards.remove(1))})
-			hands.foreach{hand=> hand.computeScore}
+			/*Has the player enough money to split?*/
+			if(this.moneyz>=(this.bet*(this.hands.length+1))){
+				/*Create a new hand, add the second card of hand to split to first card of newly created hand and remove the second card from first hand*/
+				hands += new Hand({h:Hand => h.addCard(hand.cards.remove(1))})
+				hands.foreach{hand=> hand.computeScore}
+			}
+			else {
+				throw new IllegalArgumentException("You don't have enough money to split, sorry !")
+			}
 		}
 	}
 

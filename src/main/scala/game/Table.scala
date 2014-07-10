@@ -34,7 +34,8 @@ object Table {
 					/*Is the player in the middle of a game?*/
 					Player.isPlaying match {
 						case true => {
-							Player.hands.filter{h: Hand => !h.isStanding && h.score<=21}.foreach{hand =>
+							/*For each hand that isn't standing or busted, let the user decide what to do*/
+							Player.hands.filter{h: Hand => !h.isStanding && !h.isBusted}.foreach{hand =>
 								/*Printing user's available choices*/
 								this.realTimefeel(()=>{
 									println()
