@@ -43,7 +43,7 @@ The game play is very basic:
 
 Comments
 --------
-This implementation is very basic. Having the final defense of my PhD on July 16th, I strictly limited myself to 24h of coding for this project, so some limit behavior might not be handled correctly. I should mention that I am fairly new to Scala but I really like it so I decided to give it a go. Consequently, I may have probably missed opportunities to use nice syntactic options.
+This implementation is very basic. Having the final defense of my PhD on July 16th, I strictly limited myself to 24h of coding for this project, so some limit behavior might not be handled correctly. I should mention that I am fairly new to Scala but I really like it so I decided to give it a go. Consequently, I may have missed opportunities to use nice syntactic options.
 
 Class structure
 ---------------
