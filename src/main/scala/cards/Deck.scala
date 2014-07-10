@@ -53,13 +53,9 @@ object Deck extends CardsCollection{
 
 	/*Fill the deck for each Suit*/
 	private def fillSuits {
-		/*Index offset to fill the 52 cards*/
-		var indexOffset = 0
 		Suit.values foreach{i=>
 			/*Fill the Suit*/
 			fillOneSuit(1,i)
-			/*increment the offset of 13 cards*/
-			indexOffset += 13
 		}
 	}
 	
