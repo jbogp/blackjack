@@ -63,7 +63,7 @@ object Player {
 		hand.addCard(Deck.drawCard)
 	}
 
-	/*Split one hand into two providing the hand only contains */
+	/*Split one hand into two providing the hand only contains 2 cards and that the 2 cards are the same (ie Queen and Queen or 7 and 7...)*/
 	def split(hand:Hand) {
 		/*Is the hand splittable*/
 		if(hand.isSplittable){
@@ -80,7 +80,7 @@ object Player {
 	}
 
 
-  /*Returns a Tuple of Boolean
+	/*Returns a Tuple of Boolean
 	* 1.Do we need the dealer to hit cards? ie. Is the game over (all hands standing) with at least one hand not busted
 	* 2. Are all the hands Standing?
 	*/
