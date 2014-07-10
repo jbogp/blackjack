@@ -32,7 +32,7 @@ The game play is very basic:
   - Stand
   - If the 2 cards are the same(for example Queen of Spades and Queen of Diamonds), the player can split his hand into 2 independent hands. (The starting bet is consequently doubled, both hands with the same bet)
 
-- During this process if the hand exceeds 21, the hand is busted and the bet is lost (the dealer still hit his cards but the result won't matter)
+- During this process if the hand exceeds 21, the hand is busted and the bet is lost.
 
 - When all non busted hands are standing, the dealer will hit cards until reaching a minimum of 17.
   - If the player's hand is higher than the dealer's or if the dealer is busted, the bet is won
