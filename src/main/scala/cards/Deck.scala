@@ -10,7 +10,7 @@ object Deck extends CardsCollection{
 	/*Number of rounds played with the same deck*/
 	var numberOfRounds = 0
 
-	/*Update the deck and reshuffle is needed*/
+	/*Update the deck and reshuffle if needed*/
 	def updateDeck {
 		this.numberOfRounds = {
 			(numberOfRounds+1 == limitRounds)  match {

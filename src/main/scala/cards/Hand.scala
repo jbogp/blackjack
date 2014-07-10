@@ -44,7 +44,7 @@ class Hand extends CardsCollection{
 			}
 		}
 		
-		/*We need to process the Aces separately, as we need to full rest of the score to know how much their value is*/
+		/*We need to process the Aces separately, as we need to know the rest of the score choose their values*/
 		for(i <- 0 until numAce) {
 			points += aceValue(points)
 		}
@@ -56,7 +56,7 @@ class Hand extends CardsCollection{
 		this.score = points
 	}
 	
-	/*toSting override, to print the hand*/
+	/*toString override, to print the hand*/
 	override def toString:String = {
 		cards.length match {
 			case 0 => "Empty Hand"
@@ -91,13 +91,13 @@ class Hand extends CardsCollection{
 		this.cards.length == 2 && this.cards(0).isEqual(this.cards(1))
 	}
 	
-	/*Does this hand win against another one?*/
-	def winsAgainstDealer(otherHand:Hand):Outcomes = {
-		if(this.score<=21){
-			otherHand.score match{
-				case x if x>21 => Outcomes.Win
-				case x if x<this.score => Outcomes.Win
-				case x if x==this.score => Outcomes.Push
+	/*Does this hand (for a player) win against a dealer's hand?*/
+	def winsAgainstDealer(dealerHand:Hand):Outcomes = {
+		if(!this.isBusted){
+			dealerHand match{
+				case x if x.isBusted => Outcomes.Win
+				case x if x.score<this.score => Outcomes.Win
+				case x if x.score==this.score => Outcomes.Push
 				case _ => Outcomes.Lose
 			}
 		}
