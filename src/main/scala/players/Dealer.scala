@@ -14,7 +14,7 @@ object Dealer {
 		hand.addCard(Deck.drawCard)
 	}
 
-	/*Hit until we reach 17 and return the hand*/
+	/*Hit until we reach 17*/
 	def unfoldGame:Unit = {
 		hand.score match{
 			case x if x>=17 => Unit
