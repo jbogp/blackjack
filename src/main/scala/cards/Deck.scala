@@ -5,6 +5,26 @@ import cards.Suit._
 
 object Deck extends CardsCollection{
 
+	/*Number of rounds before the deck is reshuffled*/
+	val limitRounds = 4
+	/*Number of rounds played with the same deck*/
+	var numberOfRounds = 0
+
+	/*Update the deck and reshuffle is needed*/
+	def updateDeck {
+		this.numberOfRounds = {
+			(numberOfRounds+1 == limitRounds)  match {
+				case true => {
+					/*reshuffle the deck*/
+					this.currentDeck = shuffleDeck
+					/*Return value*/
+					0
+				}
+				case false => this.numberOfRounds+1
+			}
+		}
+	}
+
 	/*Fill one suit with 13 cards*/
 	private def fillOneSuit(value:Int,suit: Suit) {
 			value match{

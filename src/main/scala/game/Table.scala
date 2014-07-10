@@ -79,7 +79,11 @@ class Table {
 	                  }
 	                }
 	              }
+		      /*Indicate the player is not playing anymore*/
 	              player.isPlaying=false
+		      /*Update the deck*/
+		      Deck.updateDeck
+		      println(Deck.numberOfRounds+" "+Deck.currentDeck.length)
 	            }
 	          }
 	          case false => {
@@ -113,7 +117,7 @@ class Table {
     catch{
       case e: NumberFormatException => {println("You need to enter a Integer value");this.play}
       case e: MatchError => {println("This choice is not valid, try again");this.play}
-      case e: IllegalArgumentException => {println(e.toString());this.play}
+      case e: IllegalArgumentException => {println(e.getMessage());this.play}
       case e:Throwable => {println("There's been an error "+e.toString());this.play}
     }
   }
