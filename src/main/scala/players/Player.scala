@@ -48,32 +48,29 @@ object Player {
 
 	/*Place a bet*/
 	def placeBet(amount:Int) {
-		if(amount>0){
-			if(amount<=this.moneyz){
-				this.bet = amount
-				this.isPlaying = true
-				} else {
-					throw new IllegalArgumentException("You are trying to spend money you don't have, have you learned nothing for the financial crisis?")
-				}
+		if(amount<=this.moneyz){
+			this.bet = amount
+			this.isPlaying = true
+		}
+		else {
+			throw new IllegalArgumentException("You are trying to spend money you don't have, have you learned nothing for the financial crisis?")
+		} 
 
-				} else{
-					throw new IllegalArgumentException("Minimum bet amount is 1 chip")
-				}   
-			}
+	}
 
-			/*Hit a card from the Deck for a particular hand*/
-			def hit(hand:Hand) {
-				hand.addCard(Deck.drawCard)
-			}
+	/*Hit a card from the Deck for a particular hand*/
+	def hit(hand:Hand) {
+		hand.addCard(Deck.drawCard)
+	}
 
-			/*Split one hand into two providing the hand only contains */
-			def split(hand:Hand) {
-				if(hand.isSplittable){
-					/*Create a new hand, add the second card of hand to split to first card of newly created hand and remove the second card from first hand*/
-					hands += new Hand({h:Hand => h.addCard(hand.cards.remove(1))})
-					hands.foreach{hand=> hand.computeScore}
-				}
-			}
+	/*Split one hand into two providing the hand only contains */
+	def split(hand:Hand) {
+		if(hand.isSplittable){
+			/*Create a new hand, add the second card of hand to split to first card of newly created hand and remove the second card from first hand*/
+			hands += new Hand({h:Hand => h.addCard(hand.cards.remove(1))})
+			hands.foreach{hand=> hand.computeScore}
+		}
+	}
 
 
   /*Returns a Tuple of Boolean

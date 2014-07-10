@@ -20,14 +20,18 @@ object Table {
 		callback()
 	}
 
-
+	/*Main game recursive function, play until quit of out of money*/
 	def play:Unit = {
-		var userChoice:Int = 0
+		/*Define the user input variable*/
+		var userChoice = 0
+		/*Try to play otherwise catch the exception*/
 		try{
+			/*Does the player still have money? If not exit*/
 			Player.moneyz match {
 				/*Exit Program*/
 				case x if x==0 && !Player.isPlaying => println("No more money! Security, show this man to the door please")
 				case _ => {
+					/*Is the player in the middle of a game?*/
 					Player.isPlaying match {
 						case true => {
 							Player.hands.filter{h: Hand => !h.isStanding && h.score<=21}.foreach{hand =>
@@ -60,6 +64,7 @@ object Table {
 								}
 							}
 
+							/*Compute gameState to know if all hands are standing, and if we need to make the dealer hit*/
 							var gameState = Player.endOfGameState
 							/*If all hands are standing, resolve game*/
 							if(gameState._2){
@@ -96,6 +101,7 @@ object Table {
 							this.play
 
 						}
+						/*Player isn't playing, start a new game by betting some chips*/
 						case false => {
 							/*intialize the player state at the start of the game*/
 							Player.initNewGame
